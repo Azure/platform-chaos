@@ -1,0 +1,18 @@
+{
+  "name": "azure-chaos-fn",
+  "version": "2.0.0",
+  "description": "The base module for all azure-chaos extensions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "azure",
+    "chaos"
+  ],
+  "author": "Ben Greenier",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.0.0"
+  }
+}
