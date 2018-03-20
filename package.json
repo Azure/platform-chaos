@@ -1,6 +1,6 @@
 {
   "name": "azure-chaos-fn",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "The base module for all azure-chaos extensions",
   "main": "index.js",
   "scripts": {
