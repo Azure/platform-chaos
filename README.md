@@ -1,12 +1,14 @@
 # platform-chaos
 
-An sdk for building services capable of injecting chaos into PaaS offerings. ⚙️ 🌩 
+A node sdk for building services capable of injecting chaos into PaaS offerings. ⚙️ 🌩 
 
 ![hero image](.github/hero.png)
 
-Platform chaos is a collection of tools and sdks that enable engineers to experiement on distributed systems built atop Azure PaaS offerings to ensure confidence in such a system's capabilities. It does so by defining a common interface for inducing chaos, through a construct we call chaos extensions. Given this common interface, we're able to provide tooling that can schedule, start, and stop chaotic events.
+Platform chaos is a collection of tools and sdks that enable engineers to experiement on distributed systems built atop PaaS offerings to ensure confidence in such a system's capabilities. It does so by defining a common interface for inducing chaos, through a construct we call chaos extensions. Given this common interface, we're able to provide tooling that can schedule, start, and stop chaotic events.
 
 This project is the core sdk that enables chaos extension development using [NodeJS](https://nodejs.org).
+
+The common interface mentioned above that all chaos extensions must implement is defined using OpenAPI docs [here](https://rebilly.github.io/ReDoc/?url=https://raw.githubusercontent.com/azure/platform-chaos/master/swagger.yaml). As such, an extension can be developed using any language. SDKs to simplify creation of extensions using other languages may be added in the future.
 
 ## How to use
 
@@ -136,13 +138,9 @@ provided by the bot. You will only need to do this once across all repos using o
 
 > When you're ready, you can submit pull requests [here](https://github.com/Azure/platform-chaos/pulls)!
 
-We've developed a quick checklist that your change should meet, before you submit a pull request:
+We've defined a pull request template that should be filled out when you're submitting a pull request. You'll see it when you create your PR. Please fill it out to the best of your ability!
 
-* Ensure your change isn't already implemented by a pending pull request
-* All tests pass locally (see [the testing section](#testing) for more info)
-* New behaviors or major functional changes have tests
-
-When you've completed the checklist, and it's time to submit a pull request, your pull request should: 
+Further, your pull request should: 
 
 * Include a description of what your change intends to do
 * Be a child commit of a reasonably recent commit in the **master** branch 
@@ -154,7 +152,6 @@ When you've completed the checklist, and it's time to submit a pull request, you
     * At least one test should fail in the absence of your non-test code changes. If your PR does not match this criteria, please specify why
     * Tests should include reasonable permutations of the target fix/change
     * Include baseline changes with your change
-* To avoid line ending issues, set `autocrlf = input` and `whitespace = cr-at-eol` in your git configuration
 
 Note that once you've [submitted a pull request](https://github.com/Azure/platform-chaos/pulls) you may need to sign a CLA - see [the legal section](#legal) for more information.
 

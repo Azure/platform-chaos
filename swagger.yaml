@@ -1,0 +1,78 @@
+swagger: "2.0"
+info:
+  description: "This documents the expected API that an [azure-chaos](https://github.com/bengreenier/azure-chaos) extension should implement.\n> Note: security for this API is optional, but if implemented as a part of the service, it should be done via a `code` query parameter as part of the url."
+  version: "1.0.0"
+  title: "azure-chaos extension API"
+  license:
+    name: "MIT"
+    url: "https://github.com/bengreenier/azure-chaos/blob/master/LICENSE"
+schemes:
+- "https"
+paths:
+  /start:
+    post:
+      tags:
+      - "extension"
+      summary: "Starts a chaotic event"
+      description: "This endpoint is expected to start some chaotic event using to provided information to target and invoke said event"
+      operationId: "start"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "event arguments"
+        required: true
+        schema:
+          $ref: '#/definitions/Arguments'
+      responses:
+        200:
+          description: "Chaotic event started"
+      security:
+      - codeAuth: []
+  /stop:
+    post:
+      tags:
+      - "extension"
+      summary: "Starts a chaotic event"
+      description: "This endpoint is expected to stop some chaotic event using to provided information to target and invoke said stopping action"
+      operationId: "stop"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "event arguments"
+        required: true
+        schema:
+          $ref: '#/definitions/Arguments'
+      responses:
+        200:
+          description: "Chaotic event stopped"
+      security:
+      - codeAuth: []
+securityDefinitions:
+  codeAuth:
+    type: "apiKey"
+    name: "code"
+    in: "query"
+definitions:
+  Arguments:
+    properties:
+      accessToken:
+        description: "The Azure accessToken, in the form of `Bearer <tokenValue>`"
+        example: 'Bearer ZXhhbXBsZSBlbmNvZGVy'
+        type: 'string'
+      resources:
+        description: "Array of Azure resource identifiers in the form of `subId/resourceGroupName/resourceName`"
+        type: 'array'
+        items:
+          type: 'string'
+          example: '00000000-0000-0000-0000-000000000000/myresourcegroup/myapp'
+externalDocs:
+  description: "Find out more about azure-chaos"
+  url: "https://github.com/bengreenier/azure-chaos"
