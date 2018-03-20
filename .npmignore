@@ -1,1 +1,4 @@
-readme_logo.gif
+.github/
+swagger.yaml
+EXTENSIONS.md
+.travis.yml
