@@ -1,13 +1,14 @@
 {
-  "name": "azure-chaos-fn",
+  "name": "platform-chaos",
   "version": "1.0.0",
-  "description": "The base module for all azure-chaos extensions",
+  "description": "A node sdk for building services capable of injecting chaos into PaaS offerings",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
     "azure",
+    "platform",
     "chaos"
   ],
   "author": "Ben Greenier",

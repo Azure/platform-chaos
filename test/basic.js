@@ -1,7 +1,11 @@
 const assert = require('assert')
 const index = require('../')
 
-describe('azure-chaos-fn', () => {
+describe('platform-chaos', () => {
+    it('is named properly', () => {
+        assert.equal(require('../package.json').name, 'platform-chaos')
+        assert.equal(require('../package-lock.json').name, 'platform-chaos')
+    })
     it('parses resources', () => {
         assert.throws(() => {
             index.validators.resources({
