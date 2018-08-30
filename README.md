@@ -23,6 +23,8 @@ npm install platform-chaos
 
 Then consume the module in code, leveraging the following API.
 
+Review [this Wiki article](https://github.com/Azure/platform-chaos/wiki/Building-an-Azure-Web-App-Chaos-Extension-with-Node.JS) for a tutorial on building and using your own Platform Chaos Extension.
+
 ## API
 
 This is the exported API from the `platform-chaos` NPM module.
