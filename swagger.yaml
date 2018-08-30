@@ -36,7 +36,7 @@ paths:
     post:
       tags:
       - "extension"
-      summary: "Starts a chaotic event"
+      summary: "Stops a chaotic event"
       description: "This endpoint is expected to stop some chaotic event using to provided information to target and invoke said stopping action"
       operationId: "stop"
       consumes:
