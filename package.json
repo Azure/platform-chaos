@@ -11,7 +11,7 @@
     "platform",
     "chaos"
   ],
-  "author": "Ben Greenier",
+  "author": "Microsoft",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^5.4.0",
