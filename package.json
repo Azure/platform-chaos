@@ -21,5 +21,8 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "pino": "^5.4.1"
   }
 }
