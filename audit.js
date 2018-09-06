@@ -10,14 +10,14 @@ module.exports = function (context) {
     console.log(arguments)
     // instead of the user passing a string to the context.log they will
     // pass an object with the following properties
-    const { isChaosEvent, eventName, extensionLogs } = arguments[2]
+    const { isChaosEvent, eventName, extensionLogs, resource } = arguments[2]
     if (isChaosEvent) {
       context['audit-queue'].push(JSON.stringify({
         eventId: uuidv4(),
         eventName: eventName,
         system: `${os.hostname}-${os.system}`,
-        date: new Date(),
-        resource: '',
+        date: new Date().toISOString(),
+        resource: resource,
         extension: extensionLogs
       }))
     }
