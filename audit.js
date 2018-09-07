@@ -6,12 +6,10 @@ module.exports = function (context) {
   context['audit-queue'] = []
 
   shimmer.wrap(context, 'log', function (original) {
-    console.log(original)
-    console.log(arguments)
-    // instead of the user passing a string to the context.log they will
-    // pass an object with the following properties
-    const { isChaosEvent, eventName, extensionLogs, resource } = arguments[2]
-    if (isChaosEvent) {
+    const arg = arguments[0]
+
+    if (typeof arg === 'object') {
+      const { eventName, resource, extensionLogs } = arg
       context['audit-queue'].push(JSON.stringify({
         eventId: uuidv4(),
         eventName: eventName,
@@ -20,8 +18,13 @@ module.exports = function (context) {
         resource: resource,
         extension: extensionLogs
       }))
+
+      return original.apply(this, [ 'Log added to audit queue' ])
+    } else {
+
+      return original.apply(this, arguments)
     }
-    return original.apply(this, arguments)
+
   })
 
   shimmer.wrap(context, 'done', function (original) {
