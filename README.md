@@ -83,6 +83,25 @@ Inflates the `resources` from a `req` objects `body` into a collection of object
 const objs = require('azure-chaos-fn/parsers').resourcesToObjects(req)
 ```
 
+### auditer
+
+A documented implementation of the verbose logging format defined in [Auditing](https://github.com/Azure/platform-chaos/wiki/Auditing)
+
+Initialize the auditer by using the following method:
+```js
+const index = require('azure-chaos-fn')
+
+index.auditer(/* Azure Function context */, {
+    eventName: /* Chaos event name */,
+    resource: /* Target resource */
+})
+```
+
+Once initialized you just need to use `context.log` as normal and anything you log will be added to an audit object that is attached the response body when you run `context.done()`. Access the audits via `res.body.__audits`. 
+
+See a fully implemented example in [this]() chaos event.
+> TODO: Add an example project for 'this'
+
 ## Related Projects
 
 * [platform-chaos-api](https://github.com/Azure/platform-chaos-api) - An API for introducing chaos into Azure PaaS offerings using configurable extensions.
