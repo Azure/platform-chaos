@@ -1,7 +1,7 @@
 # platform-chaos
 
 
-[![Build Status](https://travis-ci.org/azure/platform-chaos.svg?branch=master)](https://travis-ci.org/azure/platform-chaos)
+[![Build Status](https://travis-ci.org/Azure/platform-chaos.svg?branch=master)](https://travis-ci.org/Azure/platform-chaos)
 
 A node sdk for building services capable of injecting chaos into PaaS offerings. ⚙️ 🌩 
 
