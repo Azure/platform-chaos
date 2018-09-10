@@ -119,7 +119,7 @@ describe('platform-chaos', () => {
       res: { body: {} }
     }
 
-    index.auditer(context, {
+    index.auditer.initialize(context, {
       eventName: 'testEvent',
       resource: 'testResource'
     })
@@ -151,5 +151,48 @@ describe('platform-chaos', () => {
     assert(isEqual(body.__audits[0].extensionLog[0], logItem1), 'log item 1 is added to audit correctly')
     assert(isEqual(body.__audits[1].extensionLog[0], logItem2), 'log item 2 is added to audit correctly')
     assert(isEqual(body.__audits[2].extensionLog, logItem3), 'log item 3 is added to audit correctly')
+  })
+
+  it('allows user to audit directly', () => {
+    before(() => {
+      index.auditer.auditQueue = []
+    })
+    function contextLog () {
+      // in reality this would be `console.log(...arguments)`
+      // but in order to not cluter test we noop this
+      return () => null
+    }
+    function contextDone () {
+      return () => null
+    }
+
+    const contextLogSpy = sinon.spy(contextLog)
+    const contextDoneSpy = sinon.spy(contextDone)
+
+    const context = {
+      log: contextLogSpy,
+      done: contextDoneSpy,
+      res: { body: {} }
+    }
+
+    const opts = {
+      eventName: 'testEvent',
+      resource: 'testResource'
+    }
+
+    index.auditer.initialize(context, opts)
+
+    index.auditer.auditDirectly('Hello, World!', opts)
+
+    context.done()
+
+    assert(contextLogSpy.notCalled, 'context.log should not be called')
+    assert(contextDoneSpy.called, 'context.done should be called')
+
+    const body = context.res.body
+
+    assert(typeof body === 'object', 'context.res.body should exist as an object')
+    assert(body.hasOwnProperty('__audits'), 'body contains __audits property')
+    assert(body.__audits[0].extensionLog[0] === 'Hello, World!', 'log item 1 is added to audit correctly')
   })
 })
