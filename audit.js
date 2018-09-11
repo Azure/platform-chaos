@@ -20,7 +20,7 @@ const audit = (extensionLogArgs, auditOptions) => {
 }
 
 module.exports = {
-  auditDirectly: audit,
+  audit: audit,
   initialize: (context, opts) => {
     assert(opts, 'Options object must be defined')
     assert(typeof opts.eventName === 'string', 'Event name must be a string')
@@ -28,7 +28,6 @@ module.exports = {
 
     const auditOptions = opts
 
-    // clearQueue()
     auditQueue = []
 
     shimmer.wrap(context, 'log', function (original) {
