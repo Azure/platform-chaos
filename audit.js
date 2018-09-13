@@ -7,14 +7,14 @@ const auditSystem = `${os.hostname()}-${os.platform()}`
 let auditQueue = []
 
 const audit = (extensionLogArgs, auditOptions) => {
-  const { eventName, resource } = auditOptions
+  const { eventName, resources } = auditOptions
 
   auditQueue.push({
     auditId: uuidv4(),
     eventName: eventName,
     system: auditSystem,
     date: new Date().toISOString(),
-    resource: resource,
+    resources: resources,
     extensionLog: typeof extensionLogArgs === 'string' ? [ extensionLogArgs ] : Array.from(extensionLogArgs)
   })
 }
@@ -24,7 +24,7 @@ module.exports = {
   initialize: (context, opts) => {
     assert(opts, 'Options object must be defined')
     assert(typeof opts.eventName === 'string', 'Event name must be a string')
-    assert(typeof opts.resource === 'string', 'Resource must be a string')
+    assert(typeof opts.resources === 'string', 'Resources must be a string')
 
     const auditOptions = opts
 
@@ -41,19 +41,22 @@ module.exports = {
       return function () {
         const audits = auditQueue
 
-        if (typeof context.res.body === 'string') {
+        if (typeof context.res.body === 'undefined') {
+          context.rex.body = {
+            __audits: audits
+          }
+        } else if (typeof context.res.body === 'string') {
           const body = JSON.parse(context.res.body)
           body['__audits'] = audits
           context.res.body = JSON.stringify(body)
         } else if (typeof context.res.body === 'object') {
           context.res.body['__audits'] = audits
-        } else {
-          /* Azure functions docs does not specify `res.body`
-           * can be anything besides a String or Object.
-           * If it can be another type it should be handeled here.
-           * */
-          throw new Error('Body is not string or object')
         }
+        /*
+         * If context.res.body is not of type string or object
+         * do not append the audits list to it and return it
+         * as usual.
+         * */
 
         return original.apply(this, arguments)
       }

@@ -121,7 +121,7 @@ describe('platform-chaos', () => {
 
     index.auditer.initialize(context, {
       eventName: 'testEvent',
-      resource: 'testResource'
+      resources: 'testResource'
     })
 
     const logItem1 = {
@@ -154,9 +154,6 @@ describe('platform-chaos', () => {
   })
 
   it('allows user to audit directly', () => {
-    before(() => {
-      index.auditer.auditQueue = []
-    })
     function contextLog () {
       // in reality this would be `console.log(...arguments)`
       // but in order to not cluter test we noop this
@@ -177,12 +174,12 @@ describe('platform-chaos', () => {
 
     const opts = {
       eventName: 'testEvent',
-      resource: 'testResource'
+      resources: 'testResource'
     }
 
     index.auditer.initialize(context, opts)
 
-    index.auditer.auditDirectly('Hello, World!', opts)
+    index.auditer.audit('Hello, World!', opts)
 
     context.done()
 
