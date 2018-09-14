@@ -15,6 +15,8 @@ The common interface mentioned above that all chaos extensions must implement is
 
 ## How to use
 
+> Note: node version `>= 4.9.x` is __required__.
+
 To consume this sdk, install it from [NPM](https://npmjs.com/package/platform-chaos):
 
 ```
