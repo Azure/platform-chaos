@@ -1,7 +1,7 @@
 # platform-chaos
 
 
-[![Build Status](https://travis-ci.org/azure/platform-chaos.svg?branch=master)](https://travis-ci.org/azure/platform-chaos)
+[![Build Status](https://travis-ci.org/Azure/platform-chaos.svg?branch=master)](https://travis-ci.org/Azure/platform-chaos)
 
 A node sdk for building services capable of injecting chaos into PaaS offerings. ⚙️ 🌩 
 
@@ -82,6 +82,23 @@ Inflates the `resources` from a `req` objects `body` into a collection of object
 ```
 const objs = require('azure-chaos-fn/parsers').resourcesToObjects(req)
 ```
+
+### auditer
+
+A documented implementation of the verbose logging format defined in [Auditing](https://github.com/Azure/platform-chaos/wiki/Auditing). The auditer is implemented by monkeypatching the `context` instance _log_ and _done_ methods. As a developer there is little extra effort you need to do to start using the auditer. At the beginning of your extension file, initialize the auditer by passing in the eventName and resources. Then use `context.log` as usual. Everything you log will be added to an intern audit list. When you call `context.done` at the end of your extension, the internal audit list is appended to the `context.res.body` under the `__audits` property.
+
+Initialize the auditer by using the following method:
+```js
+const index = require('azure-chaos-fn')
+
+index.auditer(/* Azure Function context */, {
+    eventName: /* Chaos event name : string */,
+    resources: /* Target resources : string */
+})
+```
+
+See a fully implemented example in [this]() chaos event.
+> TODO: Add an example project for 'this'
 
 ## Related Projects
 

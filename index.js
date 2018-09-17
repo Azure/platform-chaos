@@ -1,4 +1,5 @@
 module.exports = {
   parsers: require('./parsers'),
-  validators: require('./validators')
+  validators: require('./validators'),
+  auditer: require('./audit')
 }
