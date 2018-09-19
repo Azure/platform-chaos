@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "lib": ["es6", "dom"],
+        "module": "commonjs",
+        "noEmit": true,
+        "outDir": "dist",
+        "sourceMap": true,
+    },
+    "files": [
+        "index.ts",
+        "audit.ts",
+        "validators.ts",
+        "parsers.ts"
+    ]
+}

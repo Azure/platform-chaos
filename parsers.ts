@@ -1,6 +1,6 @@
-const validate = require('./validators')
+import validate from './validators'
 
-module.exports = {
+export default {
   accessTokenToCredentials: (req) => {
     // ensure we have a valid accessToken before proceeding
     validate.accessToken(req)

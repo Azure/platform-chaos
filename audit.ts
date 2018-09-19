@@ -1,7 +1,7 @@
-const shimmer = require('shimmer')
-const assert = require('assert')
-const os = require('os')
-const uuidv4 = require('uuid/v4')
+import * as shimmer from 'shimmer'
+import * as assert from 'assert'
+import * as os from 'os'
+import * as uuidv4 from 'uuid'
 
 const auditSystem = `${os.hostname()}-${os.platform()}`
 let auditQueue = []
@@ -19,7 +19,7 @@ const audit = (extensionLogArgs, auditOptions) => {
   })
 }
 
-module.exports = {
+export default {
   audit: audit,
   initialize: (context, opts) => {
     assert(opts, 'Options object must be defined')

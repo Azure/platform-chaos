@@ -14,6 +14,9 @@
   "author": "microsoft",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^10.10.1",
+    "@types/shimmer": "^1.0.1",
+    "@types/uuid": "^3.4.4",
     "eslint": "^5.4.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
@@ -25,6 +28,7 @@
     "sinon": "^6.2.0"
   },
   "dependencies": {
+    "@types/assert": "0.0.31",
     "shimmer": "^1.2.0",
     "uuid": "^3.3.2"
   }
