@@ -97,12 +97,7 @@ index.auditer(/* Azure Function context */, {
 })
 ```
 
-See a fully implemented example in [this](https://github.com/trstringer/azure-chaos-fn-webapp-startstop) chaos extension.
-Below is the contents of `start.js` 
-
-https://github.com/trstringer/azure-chaos-fn-webapp-startstop/blob/4730f1749a90b03264e4c0438f8abc3621735128/start/index.js#L1-L35
-
-Notice how in line 14 the auditer is being initialized with an eventName and resources string. After that point, `context.log` is called as usual. Every time it is called, audits are being added to the SDK's internal audit list. These audits are appended to the body of response when `context.done` is called (on line 28 or 33).
+See a fully implemented example in [this](https://github.com/trstringer/azure-chaos-fn-webapp-startstop) chaos extension. To learn more read [here](https://github.com/Azure/platform-chaos/wiki/Auditing#example).
 
 ## Related Projects
 
