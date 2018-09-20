@@ -1,27 +1,41 @@
-import * as shimmer from 'shimmer'
 import * as assert from 'assert'
 import * as os from 'os'
+import * as shimmer from 'shimmer'
 import * as uuidv4 from 'uuid'
 
-const auditSystem = `${os.hostname()}-${os.platform()}`
-let auditQueue = []
+export interface IAudit {
+  auditId: string,
+  date: string,
+  eventName: string,
+  extensionLog: string[],
+  resources: string,
+  system: string
+}
 
-const audit = (extensionLogArgs, auditOptions) => {
+interface IAuditOptions {
+  eventName: string,
+  resources: string
+}
+
+const auditSystem = `${os.hostname()}-${os.platform()}`
+let auditQueue: IAudit[] = []
+
+const audit = (extensionLogArgs, auditOptions: IAuditOptions) => {
   const { eventName, resources } = auditOptions
 
   auditQueue.push({
     auditId: uuidv4(),
-    eventName: eventName,
-    system: auditSystem,
     date: new Date().toISOString(),
-    resources: resources,
-    extensionLog: typeof extensionLogArgs === 'string' ? [ extensionLogArgs ] : Array.from(extensionLogArgs)
+    eventName,
+    extensionLog: typeof extensionLogArgs === 'string' ? [ extensionLogArgs ] : Array.from(extensionLogArgs),
+    resources,
+    system: auditSystem
   })
 }
 
 export default {
-  audit: audit,
-  initialize: (context, opts) => {
+  audit,
+  initialize: (context: any, opts: IAuditOptions) => {
     assert(opts, 'Options object must be defined')
     assert(typeof opts.eventName === 'string', 'Event name must be a string')
     assert(typeof opts.resources === 'string', 'Resources must be a string')
@@ -30,14 +44,14 @@ export default {
 
     auditQueue = []
 
-    shimmer.wrap(context, 'log', function (original) {
+    shimmer.wrap(context, 'log', (original: (message: any) => void) => {
       return function () {
         audit(arguments, auditOptions)
         return original.apply(this, arguments)
       }
     })
 
-    shimmer.wrap(context, 'done', function (original) {
+    shimmer.wrap(context, 'done', (original: (err: any, propertyBag: any) => void) => {
       return function () {
         const audits = auditQueue
 
@@ -47,10 +61,10 @@ export default {
           }
         } else if (typeof context.res.body === 'string') {
           const body = JSON.parse(context.res.body)
-          body['__audits'] = audits
+          body.__audits = audits
           context.res.body = JSON.stringify(body)
         } else if (typeof context.res.body === 'object') {
-          context.res.body['__audits'] = audits
+          context.res.body.__audits = audits
         }
         /*
          * If context.res.body is not of type string or object

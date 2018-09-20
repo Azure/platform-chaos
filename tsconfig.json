@@ -5,11 +5,13 @@
         "noEmit": true,
         "outDir": "dist",
         "sourceMap": true,
+        "target": "es6",
     },
     "files": [
         "index.ts",
         "audit.ts",
         "validators.ts",
-        "parsers.ts"
+        "parsers.ts",
+        "test/basic.ts"
     ]
 }

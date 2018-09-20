@@ -1,9 +1,18 @@
-import * as assert from 'assert';
-import index from '../index';
-import * as sinon from 'sinon';
-import * as isEqual from 'lodash.isequal';
+import * as assert from 'assert'
+import * as sinon from 'sinon'
 
-/* eslint-env node, mocha */
+import isEqual = require('lodash.isequal')
+
+import { IAudit } from '../audit'
+import index from '../index'
+
+interface IHeader {
+  Authorization?: string
+}
+
+interface IBody {
+  __audits?: IAudit[]
+}
 
 describe('platform-chaos', () => {
   it('is named properly', () => {
@@ -92,12 +101,12 @@ describe('platform-chaos', () => {
     })
 
     const res = {
-      headers: {}
+      headers: {} as IHeader
     }
 
-    instance.signRequest(res, () => {})
+    instance.signRequest(res, () => null)
 
-    assert.equal(res.headers['Authorization'], expectedAccessToken)
+    assert.equal(res.headers.Authorization, expectedAccessToken)
   })
 
   it('audits correctly', () => {
@@ -114,8 +123,8 @@ describe('platform-chaos', () => {
     const contextDoneSpy = sinon.spy(contextDone)
 
     const context = {
-      log: contextLogSpy,
       done: contextDoneSpy,
+      log: contextLogSpy,
       res: { body: {} }
     }
 
@@ -125,8 +134,8 @@ describe('platform-chaos', () => {
     })
 
     const logItem1 = {
-      'prop1': 'important information',
-      'anotherProp': 'more important info'
+      anotherProp: 'more important info',
+      prop1: 'important information'
     }
     const logItem2 = 'Hello, World!'
     const logItem3 = ['abc', { a: 12 }]
@@ -144,7 +153,7 @@ describe('platform-chaos', () => {
     assert(contextLogSpy.called, 'context.log should be called')
     assert(contextDoneSpy.called, 'context.done should be called')
 
-    const body = context.res.body
+    const body: IBody = context.res.body
 
     assert(typeof body === 'object', 'context.res.body should exist as an object')
     assert(body.hasOwnProperty('__audits'), 'body contains __audits property')
@@ -167,8 +176,8 @@ describe('platform-chaos', () => {
     const contextDoneSpy = sinon.spy(contextDone)
 
     const context = {
-      log: contextLogSpy,
       done: contextDoneSpy,
+      log: contextLogSpy,
       res: { body: {} }
     }
 
@@ -186,7 +195,7 @@ describe('platform-chaos', () => {
     assert(contextLogSpy.notCalled, 'context.log should not be called')
     assert(contextDoneSpy.called, 'context.done should be called')
 
-    const body = context.res.body
+    const body: IBody = context.res.body
 
     assert(typeof body === 'object', 'context.res.body should exist as an object')
     assert(body.hasOwnProperty('__audits'), 'body contains __audits property')
