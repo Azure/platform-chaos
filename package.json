@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "compile": "npx tsc ."
+    "compile": "npx tsc -p tsconfig.json"
   },
   "keywords": [
     "azure",
