@@ -4,7 +4,9 @@
   "description": "A node sdk for building services capable of injecting chaos into PaaS offerings",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "pretest": "npm run compile",
+    "test": "npm run test-only",
+    "test-only": "mocha dist/test/",
     "compile": "npx tsc -p tsconfig.json"
   },
   "keywords": [
