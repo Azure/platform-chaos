@@ -2,12 +2,14 @@
   "name": "platform-chaos",
   "version": "1.0.0",
   "description": "A node sdk for building services capable of injecting chaos into PaaS offerings",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "pretest": "npm run compile",
+    "pretest": "npm run cleanup && npm run compile",
     "test": "npm run test-only",
+    "posttest": "npm run cleanup",
     "test-only": "mocha dist/test/",
-    "compile": "npx tsc -p tsconfig.json"
+    "compile": "npx tsc -p tsconfig.json",
+    "cleanup": "rm -rf dist/"
   },
   "keywords": [
     "azure",
@@ -17,6 +19,7 @@
   "author": "microsoft",
   "license": "MIT",
   "devDependencies": {
+    "@types/assert": "0.0.31",
     "@types/lodash.isequal": "^4.5.3",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.10.1",
@@ -37,7 +40,6 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@types/assert": "0.0.31",
     "shimmer": "^1.2.0",
     "uuid": "^3.3.2"
   }
