@@ -16,8 +16,8 @@ interface IBody {
 
 describe('platform-chaos', () => {
   it('is named properly', () => {
-    assert.equal(require('../../package.json').name, 'platform-chaos')
-    assert.equal(require('../../package-lock.json').name, 'platform-chaos')
+    assert.strictEqual(require('../../package.json').name, 'platform-chaos')
+    assert.strictEqual(require('../../package-lock.json').name, 'platform-chaos')
   })
   it('parses resources', () => {
     assert.throws(() => {
@@ -50,9 +50,9 @@ describe('platform-chaos', () => {
       }
     })[0]
 
-    assert.equal(instance.subscriptionId, 'sub')
-    assert.equal(instance.resourceGroupName, 'rg')
-    assert.equal(instance.resourceName, 'resource')
+    assert.strictEqual(instance.subscriptionId, 'sub')
+    assert.strictEqual(instance.resourceGroupName, 'rg')
+    assert.strictEqual(instance.resourceName, 'resource')
   })
 
   it('parses accessTokens', () => {
@@ -106,7 +106,7 @@ describe('platform-chaos', () => {
 
     instance.signRequest(res, () => null)
 
-    assert.equal(res.headers.Authorization, expectedAccessToken)
+    assert.strictEqual(res.headers.Authorization, expectedAccessToken)
   })
 
   it('audits correctly', () => {
@@ -155,11 +155,13 @@ describe('platform-chaos', () => {
 
     const body: IBody = context.res.body
 
-    assert(typeof body === 'object', 'context.res.body should exist as an object')
     assert(body.hasOwnProperty('__audits'), 'body contains __audits property')
-    assert(isEqual(body.__audits[0].extensionLog[0], logItem1), 'log item 1 is added to audit correctly')
-    assert(isEqual(body.__audits[1].extensionLog[0], logItem2), 'log item 2 is added to audit correctly')
-    assert(isEqual(body.__audits[2].extensionLog, logItem3), 'log item 3 is added to audit correctly')
+    assert(isEqual(body.__audits && body.__audits[0].extensionLog[0], logItem1),
+    'log item 1 is added to audit correctly')
+    assert(isEqual(body.__audits && body.__audits[1].extensionLog[0], logItem2),
+    'log item 2 is added to audit correctly')
+    assert(isEqual(body.__audits && body.__audits[2].extensionLog, logItem3),
+    'log item 3 is added to audit correctly')
   })
 
   it('allows user to audit directly', () => {
@@ -197,8 +199,8 @@ describe('platform-chaos', () => {
 
     const body: IBody = context.res.body
 
-    assert(typeof body === 'object', 'context.res.body should exist as an object')
     assert(body.hasOwnProperty('__audits'), 'body contains __audits property')
-    assert(body.__audits[0].extensionLog[0] === 'Hello, World!', 'log item 1 is added to audit correctly')
+    assert(body.__audits && body.__audits[0].extensionLog[0] === 'Hello, World!',
+    'log item 1 is added to audit correctly')
   })
 })

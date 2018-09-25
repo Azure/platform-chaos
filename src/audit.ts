@@ -40,8 +40,6 @@ export default {
   audit,
   initialize: (context: any, opts: IAuditOptions) => {
     assert(opts, 'Options object must be defined')
-    assert(typeof opts.eventName === 'string', 'Event name must be a string')
-    assert(typeof opts.resources === 'string', 'Resources must be a string')
 
     const auditOptions = opts
 
