@@ -4,7 +4,7 @@ before_script:
   - npm run compile
 
 script:
-  - npm run test-only
+  - npm run test
 
 node_js:
   - "node"
