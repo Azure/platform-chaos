@@ -3,6 +3,9 @@ import * as os from 'os'
 import * as shimmer from 'shimmer'
 import * as uuidv4 from 'uuid'
 
+/* interface implementation of Audit defined in
+ * https://github.com/Azure/platform-chaos/wiki/Auditing
+ * */
 export interface IAudit {
   auditId: string,
   date: string,
