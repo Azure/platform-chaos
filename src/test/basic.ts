@@ -112,7 +112,7 @@ describe('platform-chaos', () => {
   it('audits correctly', () => {
     function contextLog () {
       // in reality this would be `console.log(...arguments)`
-      // but in order to not cluter test we noop this
+      // but in order to not clutter test we noop this
       return () => null
     }
     function contextDone () {
