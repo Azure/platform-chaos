@@ -4,7 +4,7 @@
   "description": "A node sdk for building services capable of injecting chaos into PaaS offerings",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "npx tslint 'src/**/*.ts'",
+    "lint": "npx tslint --project .",
     "test": "npm run lint && mocha dist/test/",
     "compile": "npm run cleanup && npx tsc",
     "cleanup": "rimraf dist/"
