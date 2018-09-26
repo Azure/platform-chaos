@@ -134,13 +134,13 @@ npm install
 
 Now you're ready to begin contributing!
 
+### Compiling
+
+This project uses Typescript. In order to run the code it must first be compiled using `npm run compile`. This command will first remove any existing compiled files by running `rimraf dist/`. It then compiles all javascript files contained within the `src` directory following the configurtion in `tsconfig.json`. 
+
 ### Testing
 
-To run the tests for this project, first ensure you've installed the [requirements](#development-requirements). Then use npm to run the tests locally:
-
-```
-npm test
-```
+To run the tests for this project, first ensure you've installed the [requirements](#development-requirements). Next, compile the project using `npm run compile`. Following a successful compile, you can run `npm test`. The test script will also run `tslint` on the project. 
 
 Note that this command is meant to be run from the project directory. That is,
 the folder that you cloned the project into (likey `platform-chaos`). 
