@@ -1,6 +1,6 @@
-const assert = require('assert')
+import * as assert from 'assert'
 
-module.exports = {
+export default {
   accessToken: (req) => {
     assert.ok(req.body.accessToken)
     assert.ok(typeof req.body.accessToken === 'string')

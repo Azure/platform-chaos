@@ -1,4 +1,11 @@
 language: node_js
+
+before_script:
+  - npm run compile
+
+script:
+  - npm run test
+
 node_js:
   - "node"
   - "lts/*"
