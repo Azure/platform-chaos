@@ -140,7 +140,7 @@ This project uses Typescript. In order to run the code it must first be compiled
 
 ### Testing
 
-To run the tests for this project, first ensure you've installed the [requirements](#development-requirements). Next, compile the project using `npm run compile`. Following a successful compile, you can run `npm run test`. The test script will also run `tslint` on the project. 
+To run the tests for this project, first ensure you've installed the [requirements](#development-requirements). Next, compile the project using `npm run compile`. Following a successful compile, you can run `npm test`. The test script will also run `tslint` on the project. 
 
 Note that this command is meant to be run from the project directory. That is,
 the folder that you cloned the project into (likey `platform-chaos`). 
