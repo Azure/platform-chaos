@@ -5,7 +5,7 @@ To leverage these extensions, see [How to use](README.md#how-to-use) in `README.
 
 | Extension name  |  Description  |
 | --------------- | ------------- |
-| [azure-chaos-fn-webapp-startstop](https://github.com/trstringer/azure-chaos-fn-webapp-startstop)  | Starts and stops Azure web apps.  |
+| [platform-chaos-fn-webapp-startstop](https://github.com/trstringer/platform-chaos-fn-startstop)  | Starts and stops Azure web apps.  |
 | [azure-chaos-fn-logicapp-startstop](https://github.com/gavination/azure-chaos-fn-logicapp-startstop)  | Starts and stops Azure logic apps.  |
 
 Want to add your extension? Send us [a pull request](https://github.com/Azure/platform-chaos/pulls) - see [Contributing](README.md#contributing) in `README.md` for more info. 

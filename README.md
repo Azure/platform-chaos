@@ -34,7 +34,7 @@ This is the exported API from the `platform-chaos` NPM module.
 Request validation helpers. Useful to ensure data coming in is behaving as expecting.
 
 ```
-const validate = require('azure-chaos-fn/validators')
+const validate = require('platform-chaos/validators')
 ```
 
 #### accessToken
@@ -42,7 +42,7 @@ const validate = require('azure-chaos-fn/validators')
 Validates that the `body` of a `req` object contains a valid `accessToken`.
 
 ```
-try { require('azure-chaos-fn/validators').accessToken(req) } catch (ex) { console.error(`error: ${ex}`) }
+try { require('platform-chaos/validators').accessToken(req) } catch (ex) { console.error(`error: ${ex}`) }
 ```
 
 #### resources
@@ -50,7 +50,7 @@ try { require('azure-chaos-fn/validators').accessToken(req) } catch (ex) { conso
 Validates that the `body` of a `req` object contains a valid `resources` array.
 
 ```
-try { require('azure-chaos-fn/validators').resources(req) } catch (ex) { console.error(`error: ${ex}`) }
+try { require('platform-chaos/validators').resources(req) } catch (ex) { console.error(`error: ${ex}`) }
 ```
 
 ### parsers
@@ -60,7 +60,7 @@ try { require('azure-chaos-fn/validators').resources(req) } catch (ex) { console
 Request parser helpers. Useful to parse valid request data into models.
 
 ```
-const parsers = require('azure-chaos-fn/parsers')
+const parsers = require('platform-chaos/parsers')
 ```
 
 #### accessTokenToCredentials
@@ -68,7 +68,7 @@ const parsers = require('azure-chaos-fn/parsers')
 Inflates the `accessToken` from a `req` objects `body` into a [ms-rest-azure](https://www.npmjs.com/package/ms-rest-azure) compatible   credentials object.
 
 ```
-const credentials = require('azure-chaos-fn/parsers').accessTokenToCredentials(req)
+const credentials = require('platform-chaos/parsers').accessTokenToCredentials(req)
 ```
 
 #### resourcesToObjects
@@ -80,7 +80,7 @@ Inflates the `resources` from a `req` objects `body` into a collection of object
 + `resourceName` - the azure resource name to target
 
 ```
-const objs = require('azure-chaos-fn/parsers').resourcesToObjects(req)
+const objs = require('platform-chaos/parsers').resourcesToObjects(req)
 ```
 
 ### auditer
@@ -89,7 +89,7 @@ A documented implementation of the verbose logging format defined in [Auditing](
 
 Initialize the auditer by using the following method:
 ```js
-const index = require('azure-chaos-fn')
+const index = require('platform-chaos')
 
 index.auditer(/* Azure Function context */, {
     eventName: /* Chaos event name : string */,
@@ -97,7 +97,7 @@ index.auditer(/* Azure Function context */, {
 })
 ```
 
-See a fully implemented example in [this](https://github.com/trstringer/azure-chaos-fn-webapp-startstop) chaos extension. To learn more read [here](https://github.com/Azure/platform-chaos/wiki/Auditing#example).
+See a fully implemented example in [this](https://github.com/trstringer/platform-chaos-fn-startstop) chaos extension. To learn more read [here](https://github.com/Azure/platform-chaos/wiki/Auditing#example).
 
 ## Related Projects
 
