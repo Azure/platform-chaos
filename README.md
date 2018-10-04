@@ -97,7 +97,7 @@ index.auditer(/* Azure Function context */, {
 })
 ```
 
-See a fully implemented example in [this](https://github.com/trstringer/platform-chaos-webapp-startstop) chaos extension. To learn more read [here](https://github.com/Azure/platform-chaos/wiki/Auditing#example).
+See a fully implemented example in [this](https://github.com/trstringer/platform-chaos-fn-startstop) chaos extension. To learn more read [here](https://github.com/Azure/platform-chaos/wiki/Auditing#example).
 
 ## Related Projects
 
