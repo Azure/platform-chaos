@@ -2,6 +2,8 @@
 
 
 [![Build Status](https://travis-ci.org/Azure/platform-chaos.svg?branch=master)](https://travis-ci.org/Azure/platform-chaos)
+[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/Azure/platform-chaos.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Azure/platform-chaos/context:javascript)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/Azure/platform-chaos.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Azure/platform-chaos/alerts)
 
 A node sdk for building services capable of injecting chaos into PaaS offerings. ⚙️ 🌩 
 
