@@ -9,3 +9,4 @@ script:
 node_js:
   - "node"
   - "lts/*"
+  - "4.9.1"
