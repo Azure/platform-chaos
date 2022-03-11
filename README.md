@@ -138,7 +138,7 @@ Now you're ready to begin contributing!
 
 ### Compiling
 
-This project uses Typescript. In order to run the code it must first be compiled using `npm run compile`. This command will first remove any existing compiled files by running `rimraf dist/`. It then compiles all javascript files contained within the `src` directory following the configurtion in `tsconfig.json`. 
+This project uses TypeScript. In order to run the code it must first be compiled using `npm run compile`. This command will first remove any existing compiled files by running `rimraf dist/`. It then compiles all javascript files contained within the `src` directory following the configurtion in `tsconfig.json`. 
 
 ### Testing
 
